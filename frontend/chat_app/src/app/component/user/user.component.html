@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-center">
+    <div class="card">
+      <div class="card-body">
+        <div style="width: 300px;">
+          <!-- Name input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="form5Example1">Username</label>
+            <input type="text" id="form5Example1" class="form-control" [(ngModel)]="userName" />
+          </div>
+
+          <!-- Checkbox -->
+          <div class="form-check mb-4">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form5Example3" checked />
+            <label class="form-check-label" for="form5Example3">
+              I have read and agree to the terms
+            </label>
+          </div>
+
+          <!-- Submit button -->
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary btn-block mb-4" (click)="joinTheRoom()">Join The Room</button>
+          </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
