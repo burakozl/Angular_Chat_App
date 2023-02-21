@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { io } from "socket.io-client";
 
 
@@ -7,10 +7,11 @@ import { io } from "socket.io-client";
   providedIn: 'root',
 })
 export class ChatService {
-
+  isJoined:boolean = false;
   public message$: Subject<string> = new Subject();
   public userLeft$: Subject<string> = new Subject();
   public userJoined$: Subject<string> = new Subject();
+  initialUsers: any = [];
 
   constructor() { }
 
@@ -35,7 +36,11 @@ export class ChatService {
 
   public joinTheRoom(userName:string){
     return new Promise(resolve => {
-      this.socket.emit('join',userName,(res:boolean) => {
+      this.socket.emit('join',userName,(res:any) => {
+        if(res){
+         this.isJoined = true;
+         this.initialUsers = res;
+        }
         resolve(res);
       });
     })
