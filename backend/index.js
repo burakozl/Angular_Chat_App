@@ -13,17 +13,19 @@ io.on('connection', (socket) => {
    // console.log(`${user} connected`);
 
     socket.on('message', (message) => {
-      console.log(message);
+     // console.log(message);
       //io.emit('message', `${message}`);
       socket.to(globalRoom).emit('message', {user: socket.data.user,message});
     });
 
-    socket.on('join', (userName, callback) => {
+    socket.on('join', async (userName, callback) => {
       //console.log(user);
       socket.data.user = userName;
       socket.join(globalRoom)
-      socket.to(globalRoom).emit('userJoined',socket.data.user);
-      callback(true)
+      socket.broadcast.to(globalRoom).emit('userJoined',socket.data.user);
+      const socks = await io.in(globalRoom).fetchSockets();
+      const users = socks.map(s => s.data.user);
+      callback(users)
     });
 
     socket.on('disconnect', () => {
