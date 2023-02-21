@@ -9,11 +9,11 @@
                       </div>
                       <input type="text" class="form-control" placeholder="Search...">
                   </div>
-                  <ul class="list-unstyled chat-list mt-2 mb-0">
-                      <li class="clearfix active">
+                  <ul class="list-unstyled chat-list mt-2 mb-0" >
+                      <li class="clearfix active" *ngFor="let user of users">
                           <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                           <div class="about">
-                              <div class="name">{{userName}}</div>
+                              <div class="name">{{user}}</div>
                               <div class="status"> <i class="fa fa-circle online"></i> online </div>
                           </div>
                       </li>
@@ -39,18 +39,17 @@
                           </div>
                       </div>
                   </div>
-                  <div class="chat-history">
-                      <ul class="m-b-0" *ngFor="let data of messageList">
+                  <div class="chat-history" #scroll>
+                      <ul class="m-b-0"  *ngFor="let data of messageList">
                           <li class="clearfix" *ngIf="data.user == userName">
                             <div class="float-right">
                               <div class="message-data text-right">
                                   <span class="message-data-time">{{userName}}</span>
                                   <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
                               </div>
-                              <div class="message other-message "> {{data.message}} </div>
+                              <div class="message other-message"> {{data.message}} </div>
                             </div>
                           </li>
-
                           <li class="clearfix" *ngIf="data.user != userName">
                               <div class="message-data">
                                   <span class="message-data-time">{{data.user}}</span>
