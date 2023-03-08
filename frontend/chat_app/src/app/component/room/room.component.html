@@ -14,7 +14,7 @@
           </div>
           <ul class="list-unstyled chat-list mt-2 mb-0">
             <li
-              class="clearfix active"
+              class="clearfix active mt-1"
               *ngFor="let user of users | filter : searchUser"
             >
               <img
@@ -47,6 +47,8 @@
                 <div class="chat-about">
                   <h6 class="m-b-0">{{ userName }}</h6>
                   <small>Last seen: 2 hours ago</small>
+                  <div>Current tabs: {{broadCastService.channelList.size + 1}}</div>
+                  <div>Current id: {{broadCastService.id}}</div>
                 </div>
               </div>
               <div class="col-lg-6 hidden-sm text-right">
