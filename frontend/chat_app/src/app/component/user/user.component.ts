@@ -23,8 +23,8 @@ export class UserComponent implements OnInit {
 
   async joinTheRoom(){
     LocalStorageUtil.set("user",this.userName);
+    this.chatService.connectSocket();
     const response = await this.chatService.joinTheRoom(this.userName);
-
     if(response) this.router.navigateByUrl('/room');
     else console.log("Can not join the room");
   }
